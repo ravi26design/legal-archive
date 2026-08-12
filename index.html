@@ -951,7 +951,11 @@
   .profile-btn{border-radius:9999px}
   /* center the nav links */
   nav.top .bar{position:relative}
-  nav.top .links{position:absolute;left:50%;transform:translateX(-50%);gap:2rem}
+  nav.top .navleft{display:flex;align-items:center;gap:1.25rem;min-width:0}
+  nav.top .navdiv{width:1px;height:1.6rem;background:var(--line-2);flex:none}
+  nav.top .links{position:static;left:auto;transform:none;gap:1.5rem}
+  nav.top .navleft .links a{white-space:nowrap}
+  @media(max-width:820px){nav.top .navdiv{display:none}nav.top .navleft{gap:0}}
 
   /* ---- focus rings → blue ---- */
   :focus-visible{outline-color:var(--blue)}
@@ -1906,12 +1910,15 @@
 <!-- ===== NAV ===== -->
 <nav class="top">
   <div class="bar">
-    <div class="brand" data-nav="home"><span class="mk"><i data-lucide="scale"></i></span><span class="bt">Legal<em>Repository</em></span></div>
-    <div class="links" id="navlinks">
+    <div class="navleft">
+      <div class="brand" data-nav="home"><span class="mk"><i data-lucide="scale"></i></span><span class="bt">Legal<em>Repository</em></span></div>
+      <span class="navdiv" aria-hidden="true"></span>
+      <div class="links" id="navlinks">
       <a data-nav="about">About Us</a>
       <a data-nav="publications">Publications</a>
       <a data-nav="repository">Repository</a>
       <a data-nav="contact">Contact + Contribute</a>
+      </div>
     </div>
     <div class="navright">
       <div class="applauncher">
