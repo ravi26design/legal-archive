@@ -1317,8 +1317,10 @@
   .hs-n em{font-style:normal;color:var(--green)}
   .hs-l{font-size:.8rem;font-weight:600;color:var(--muted-2);margin-top:.3rem;white-space:nowrap}
   @media(max-width:760px){.hero-stats{grid-template-columns:1fr 1fr;max-width:30rem}}
-  .hero-illu{display:block;width:100%;max-width:60rem;height:auto;margin:2.75rem auto 0;border-radius:24px;border:1px solid var(--line-2);box-shadow:0 26px 60px -26px rgba(43,54,116,.32)}
-  @media(max-width:640px){.hero-illu{margin-top:2rem;border-radius:16px}}
+  .hero{padding-top:0}
+  .hero-banner{display:block;width:100%;height:auto;border-bottom:1px solid var(--line-2)}
+  .hero .inner{padding-top:3rem}
+  @media(max-width:640px){.hero .inner{padding-top:2.25rem}}
   @media(max-width:640px){.hs-n{font-size:1.45rem}.searchgo{padding:.65rem 1rem}.searchwrap input{padding-right:6rem}}
   /* gateway CTA panel */
   .infocard.gateway{background:linear-gradient(135deg,#22326f 0%,#2b3674 60%,#243a6e 100%);border:none;color:#fff;position:relative;overflow:hidden;padding:2.9rem 2rem;box-shadow:0 24px 60px -28px rgba(20,30,80,.5)}
@@ -1825,7 +1827,7 @@
   }
   @media(max-width:600px){
     nav.top .bar,.mx,.pagehead .in,.detail-top .in,.tabsec,.related .in,.repo-body,.profilepage,.commentsec .in{padding-left:1.15rem;padding-right:1.15rem}
-    .hero{padding:2.5rem 0 2rem}
+    .hero{padding:0 0 2rem}
     .hero h1{font-size:2rem}
     .hero p{font-size:1.05rem}
     .sectionpad{padding:1.5rem 0}
@@ -1933,6 +1935,30 @@
 <!-- ===== HOME ===== -->
 <section class="view active" id="v-home">
   <div class="hero">
+    <svg class="hero-banner" viewBox="0 0 1200 340" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of forests, a river and village commons">
+      <defs>
+        <linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf2ff"/><stop offset=".55" stop-color="#f2f8f4"/><stop offset="1" stop-color="#e7f4ea"/></linearGradient>
+        <linearGradient id="hRiver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe8f6"/><stop offset="1" stop-color="#96cdea"/></linearGradient>
+      </defs>
+      <rect width="1200" height="340" fill="url(#hSky)"/>
+      <circle cx="1012" cy="70" r="46" fill="#fce7ad" opacity=".9"/>
+      <circle cx="1012" cy="70" r="46" fill="none" stroke="#f6d377" stroke-width="2" opacity=".55"/>
+      <g><path d="M150 66 q7 -8 14 0 q7 -8 14 0" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" opacity=".5"/><path d="M210 46 q6 -7 12 0 q6 -7 12 0" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round" opacity=".5"/></g>
+      <circle cx="900" cy="120" r="40" fill="#ffffff" opacity=".5"/>
+      <g transform="translate(900,120)" stroke="#1F4397" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><path d="M0 -20 V22"/><path d="M-16 -12 H16"/><path d="M-16 -12 L-24 6 H-8 Z" fill="#1F4397" fill-opacity=".12"/><path d="M16 -12 L24 6 H8 Z" fill="#1F4397" fill-opacity=".12"/><path d="M-10 24 H10"/></g>
+      <path d="M0 210 Q210 162 430 198 T860 192 T1200 212 V340 H0 Z" fill="#d3ecd8"/>
+      <path d="M0 250 Q270 204 540 242 T1010 234 T1200 252 V340 H0 Z" fill="#aadcb5"/>
+      <path d="M596 220 C568 262 700 278 664 316 C650 332 622 336 596 340 L742 340 C772 306 706 274 764 238 C690 220 640 216 596 220 Z" fill="url(#hRiver)" opacity=".92"/>
+      <path d="M0 282 Q300 246 640 282 T1200 282 V340 H0 Z" fill="#79c88a"/>
+      <path d="M0 308 Q320 282 680 308 T1200 308 V340 H0 Z" fill="#57b96e"/>
+      <g transform="translate(120,286) scale(1.15)"><rect x="-4" y="-8" width="8" height="20" rx="2" fill="#8a6239"/><path d="M0 -74 L27 -22 L-27 -22 Z" fill="#2E8540"/><path d="M0 -52 L23 -8 L-23 -8 Z" fill="#39A248"/><path d="M0 -32 L19 8 L-19 8 Z" fill="#45b455"/></g>
+      <g transform="translate(196,294) scale(.9)"><rect x="-4" y="-8" width="8" height="20" rx="2" fill="#8a6239"/><path d="M0 -74 L27 -22 L-27 -22 Z" fill="#2E8540"/><path d="M0 -52 L23 -8 L-23 -8 Z" fill="#39A248"/><path d="M0 -32 L19 8 L-19 8 Z" fill="#45b455"/></g>
+      <g transform="translate(300,300)"><rect x="-3" y="-6" width="6" height="16" fill="#8a6239"/><circle cx="0" cy="-22" r="23" fill="#2E8540"/><circle cx="-15" cy="-11" r="16" fill="#39A248"/><circle cx="15" cy="-11" r="16" fill="#45b455"/></g>
+      <g transform="translate(1080,282) scale(1.2)"><rect x="-4" y="-8" width="8" height="20" rx="2" fill="#8a6239"/><path d="M0 -74 L27 -22 L-27 -22 Z" fill="#2E8540"/><path d="M0 -52 L23 -8 L-23 -8 Z" fill="#39A248"/><path d="M0 -32 L19 8 L-19 8 Z" fill="#45b455"/></g>
+      <g transform="translate(1006,296) scale(.85)"><rect x="-3" y="-6" width="6" height="16" fill="#8a6239"/><circle cx="0" cy="-22" r="23" fill="#2E8540"/><circle cx="-15" cy="-11" r="16" fill="#39A248"/><circle cx="15" cy="-11" r="16" fill="#45b455"/></g>
+      <g transform="translate(432,290)"><rect x="-26" y="-8" width="52" height="34" rx="2" fill="#ecd9b6"/><path d="M-34 -8 L0 -40 L34 -8 Z" fill="#c0824f"/><rect x="-8" y="6" width="16" height="20" rx="1" fill="#8a6239"/></g>
+      <g transform="translate(506,298) scale(.82)"><rect x="-26" y="-8" width="52" height="34" rx="2" fill="#f0e0c2"/><path d="M-34 -8 L0 -40 L34 -8 Z" fill="#cf9256"/><rect x="-8" y="6" width="16" height="20" rx="1" fill="#8a6239"/></g>
+    </svg>
     <div class="inner">
       <h1>Legal <em>Repository</em></h1>
       <p>A comprehensive repository of legal resources, judgements, policies, and research on community rights, forest governance, and commons management in India.</p>
@@ -1947,33 +1973,6 @@
         <div class="hs"><span class="hs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg></span><div class="hs-tx"><span class="hs-n">23</span><span class="hs-l">Languages</span></div></div>
         <div class="hs"><span class="hs-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4L12 22l-9-9V3h10l7.6 7.6a2 2 0 010 2.8z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor"/></svg></span><div class="hs-tx"><span class="hs-n">38</span><span class="hs-l">Themes</span></div></div>
       </div>
-      <svg class="hero-illu" viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of forests, a river and village commons">
-        <defs>
-          <linearGradient id="hSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf2ff"/><stop offset=".55" stop-color="#f2f8f4"/><stop offset="1" stop-color="#e7f4ea"/></linearGradient>
-          <linearGradient id="hRiver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe8f6"/><stop offset="1" stop-color="#96cdea"/></linearGradient>
-          <clipPath id="hClip"><rect x="0" y="0" width="1200" height="420" rx="24"/></clipPath>
-        </defs>
-        <g clip-path="url(#hClip)">
-          <rect width="1200" height="420" fill="url(#hSky)"/>
-          <circle cx="1012" cy="92" r="56" fill="#fce7ad" opacity=".9"/>
-          <circle cx="1012" cy="92" r="56" fill="none" stroke="#f6d377" stroke-width="2" opacity=".55"/>
-          <g fill="#5b6472" opacity=".55" stroke="none"><path d="M150 96 q7 -8 14 0 q7 -8 14 0" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/><path d="M210 74 q6 -7 12 0 q6 -7 12 0" fill="none" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/></g>
-          <path d="M0 286 Q210 236 430 274 T860 268 T1200 288 V420 H0 Z" fill="#d3ecd8"/>
-          <path d="M0 330 Q270 282 540 320 T1010 312 T1200 332 V420 H0 Z" fill="#aadcb5"/>
-          <path d="M596 296 C568 340 700 356 664 396 C650 412 622 418 596 420 L742 420 C772 384 706 352 764 316 C690 296 640 292 596 296 Z" fill="url(#hRiver)" opacity=".92"/>
-          <path d="M0 360 Q300 322 640 360 T1200 360 V420 H0 Z" fill="#79c88a"/>
-          <path d="M0 388 Q320 360 680 388 T1200 388 V420 H0 Z" fill="#57b96e"/>
-          <g><g transform="translate(120,364) scale(1.15)"><rect x="-4" y="-8" width="8" height="20" rx="2" fill="#8a6239"/><path d="M0 -74 L27 -22 L-27 -22 Z" fill="#2E8540"/><path d="M0 -52 L23 -8 L-23 -8 Z" fill="#39A248"/><path d="M0 -32 L19 8 L-19 8 Z" fill="#45b455"/></g>
-          <g transform="translate(196,372) scale(.9)"><rect x="-4" y="-8" width="8" height="20" rx="2" fill="#8a6239"/><path d="M0 -74 L27 -22 L-27 -22 Z" fill="#2E8540"/><path d="M0 -52 L23 -8 L-23 -8 Z" fill="#39A248"/><path d="M0 -32 L19 8 L-19 8 Z" fill="#45b455"/></g>
-          <g transform="translate(300,378)"><rect x="-3" y="-6" width="6" height="16" fill="#8a6239"/><circle cx="0" cy="-22" r="23" fill="#2E8540"/><circle cx="-15" cy="-11" r="16" fill="#39A248"/><circle cx="15" cy="-11" r="16" fill="#45b455"/></g>
-          <g transform="translate(1080,360) scale(1.2)"><rect x="-4" y="-8" width="8" height="20" rx="2" fill="#8a6239"/><path d="M0 -74 L27 -22 L-27 -22 Z" fill="#2E8540"/><path d="M0 -52 L23 -8 L-23 -8 Z" fill="#39A248"/><path d="M0 -32 L19 8 L-19 8 Z" fill="#45b455"/></g>
-          <g transform="translate(1006,374) scale(.85)"><rect x="-3" y="-6" width="6" height="16" fill="#8a6239"/><circle cx="0" cy="-22" r="23" fill="#2E8540"/><circle cx="-15" cy="-11" r="16" fill="#39A248"/><circle cx="15" cy="-11" r="16" fill="#45b455"/></g></g>
-          <g transform="translate(432,368)"><rect x="-26" y="-8" width="52" height="34" rx="2" fill="#ecd9b6"/><path d="M-34 -8 L0 -40 L34 -8 Z" fill="#c0824f"/><rect x="-8" y="6" width="16" height="20" rx="1" fill="#8a6239"/></g>
-          <g transform="translate(506,376) scale(.82)"><rect x="-26" y="-8" width="52" height="34" rx="2" fill="#f0e0c2"/><path d="M-34 -8 L0 -40 L34 -8 Z" fill="#cf9256"/><rect x="-8" y="6" width="16" height="20" rx="1" fill="#8a6239"/></g>
-          <circle cx="900" cy="150" r="42" fill="#ffffff" opacity=".5"/>
-          <g transform="translate(900,150)" stroke="#1F4397" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><path d="M0 -20 V22"/><path d="M-16 -12 H16"/><path d="M-16 -12 L-24 6 H-8 Z" fill="#1F4397" fill-opacity=".12"/><path d="M16 -12 L24 6 H8 Z" fill="#1F4397" fill-opacity=".12"/><path d="M-10 24 H10"/></g>
-        </g>
-      </svg>
     </div>
   </div>
 
