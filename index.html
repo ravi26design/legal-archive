@@ -1319,6 +1319,10 @@
   @media(max-width:760px){.hero-stats{grid-template-columns:1fr 1fr;max-width:30rem}}
   .hero{padding-top:0}
   .hero-banner{display:block;width:100%;height:auto;border-bottom:1px solid var(--line-2)}
+  .hb-link{stroke:#1F4397;stroke-width:2;fill:none;stroke-opacity:.4;stroke-dasharray:2 9;stroke-linecap:round;animation:hbflow 3.8s linear infinite}
+  .hb-node{fill:#1F4397;fill-opacity:.4}
+  @keyframes hbflow{to{stroke-dashoffset:-44}}
+  @media(prefers-reduced-motion:reduce){.hb-link{animation:none}}
   .hero .inner{padding-top:3rem}
   @media(max-width:640px){.hero .inner{padding-top:2.25rem}}
   @media(max-width:640px){.hs-n{font-size:1.45rem}.searchgo{padding:.65rem 1rem}.searchwrap input{padding-right:6rem}}
@@ -1949,6 +1953,8 @@
       <g transform="translate(102,273) scale(.68)"><rect x="-3" y="0" width="6" height="13" rx="1.5" fill="#7d5a37"/><path d="M0 -54 L21 -4 L-21 -4 Z" fill="#3a9f4e"/><path d="M0 -34 L16 6 L-16 6 Z" fill="#4bb560"/></g>
       <g transform="translate(1070,268) scale(1)"><rect x="-3" y="0" width="6" height="13" rx="1.5" fill="#7d5a37"/><path d="M0 -54 L21 -4 L-21 -4 Z" fill="#3a9f4e"/><path d="M0 -34 L16 6 L-16 6 Z" fill="#4bb560"/></g>
       <g transform="translate(1122,273) scale(.72)"><rect x="-3" y="0" width="6" height="13" rx="1.5" fill="#7d5a37"/><path d="M0 -54 L21 -4 L-21 -4 Z" fill="#3a9f4e"/><path d="M0 -34 L16 6 L-16 6 Z" fill="#4bb560"/></g>
+      <path class="hb-link" d="M196 104 C 300 96 300 78 392 78 C 480 78 480 118 566 118 C 660 118 660 82 742 82 C 830 82 830 128 906 128"/>
+      <g class="hb-node"><circle cx="196" cy="104" r="3.4"/><circle cx="392" cy="78" r="3.4"/><circle cx="566" cy="118" r="3.4"/><circle cx="742" cy="82" r="3.4"/><circle cx="906" cy="128" r="3.4"/></g>
       <g transform="translate(196,104)"><circle r="27" fill="#ffffff" opacity=".72"/><circle r="27" fill="none" stroke="#1F4397" stroke-width="1.5" opacity=".14"/><g stroke="#1F4397" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M-12 -3 L0 -12 L12 -3"/><path d="M-9 -3 V9"/><path d="M-3 -3 V9"/><path d="M3 -3 V9"/><path d="M9 -3 V9"/><path d="M-12 12 H12"/></g></g>
       <g transform="translate(392,78)"><circle r="27" fill="#ffffff" opacity=".72"/><circle r="27" fill="none" stroke="#1F4397" stroke-width="1.5" opacity=".14"/><g stroke="#1F4397" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M-8 -12 H3 L8 -7 V12 H-8 Z"/><path d="M3 -12 V-7 H8"/><path d="M-4 -1 H4"/><path d="M-4 4 H4"/><path d="M-4 9 H1"/></g></g>
       <g transform="translate(566,118)"><circle r="27" fill="#ffffff" opacity=".72"/><circle r="27" fill="none" stroke="#1F4397" stroke-width="1.5" opacity=".14"/><g stroke="#1F4397" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -12 V11"/><path d="M-9 -8 H9"/><path d="M-9 -8 L-13 1 H-5 Z" fill="#1F4397" fill-opacity=".14"/><path d="M9 -8 L13 1 H5 Z" fill="#1F4397" fill-opacity=".14"/><path d="M-6 11 H6"/></g></g>
