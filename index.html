@@ -3275,10 +3275,9 @@ function repOverview(){
   return `<div class="wscard rep-card"><div class="rep-cardhead"><h2>Documents by Theme</h2><button class="rep-dl"><i data-lucide="download"></i></button></div>
     <div class="barchart rep-bar12">${REP_THEMES.map((t,i)=>`<div class="bar"><div class="bn">${t[1]}</div><div class="col" style="height:${Math.round(t[1]/maxT*100)}%;background:${THEME_BAR_COLORS[i%THEME_BAR_COLORS.length]}"></div><div class="bl">${t[0]}</div></div>`).join('')}</div></div>
   <div class="ws2col">
-    <div class="wscard rep-card"><div class="rep-cardhead"><h2>File Type Distribution</h2><button class="rep-dl"><i data-lucide="download"></i></button></div>${REP_FILETYPES.map(f=>hbar(f[0],f[1].toLocaleString(),f[2])).join('')}</div>
+    <div class="wscard rep-card"><div class="rep-cardhead"><h2>PDF Files &amp; Storage</h2><button class="rep-dl"><i data-lucide="download"></i></button></div>${hbar('Documents',REP_FILETYPES[0][1].toLocaleString(),REP_FILETYPES[0][2],'#E4572E')}${hbar('Storage',REP_STORAGE[0][1],REP_STORAGE[0][2],'#E4572E')}</div>
     <div class="wscard rep-card"><div class="rep-cardhead"><h2>Documents Upload Trend</h2><button class="rep-dl"><i data-lucide="download"></i></button></div><div class="barchart rep-bar4">${REP_TREND.map(t=>`<div class="bar"><div class="bn">${t[1]}</div><div class="col" style="height:${Math.round(t[1]/maxTr*100)}%"></div><div class="bl">${t[0]}</div></div>`).join('')}</div></div>
-  </div>
-  <div class="wscard rep-card"><div class="rep-cardhead"><h2>Storage by File Type</h2><button class="rep-dl"><i data-lucide="download"></i></button></div>${REP_STORAGE.map(s=>hbar(s[0],s[1],s[2])).join('')}</div>`;
+  </div>`;
 }
 const REP_ORGS=[['FES Madhya Pradesh',738,590,102,'7.4 GB'],['FES Rajasthan',624,480,96,'6.8 GB'],['FES Odisha',512,402,70,'5.2 GB'],['FES Andhra Pradesh',386,300,54,'2.6 GB'],['FES Gujarat',323,250,49,'1.8 GB'],['FES Karnataka',264,210,38,'1.4 GB']];
 const REP_MEDIA_ORG=[['PDF Document','FES Rajasthan',540,'1.6 GB'],['PDF Document','FES Rajasthan',210,'380 MB'],['PDF Document','FES Odisha',320,'560 MB'],['PDF Document','FES Odisha',280,'820 MB'],['PDF Document','FES Madhya Pradesh',240,'360 MB'],['PDF Document','FES Madhya Pradesh',180,'540 MB'],['PDF Document','FES Andhra Pradesh',150,'420 MB'],['PDF Document','FES Andhra Pradesh',120,'360 MB'],['PDF Document','FES Karnataka',60,'180 MB'],['PDF Document','FES Gujarat',70,'160 MB'],['PDF Document','FES Gujarat',60,'190 MB']];
