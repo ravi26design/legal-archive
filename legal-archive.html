@@ -1317,13 +1317,15 @@
   .hs-n em{font-style:normal;color:var(--green)}
   .hs-l{font-size:.8rem;font-weight:600;color:var(--muted-2);margin-top:.3rem;white-space:nowrap}
   @media(max-width:760px){.hero-stats{grid-template-columns:1fr 1fr;max-width:30rem}}
-  .hero{position:relative;overflow:hidden;background:#e9f0ea;padding:4.5rem 0 4rem}
+  .hero{position:relative;overflow:hidden;background:#0f1730;padding:4.5rem 0 4rem}
   .hero::before{content:"";position:absolute;top:0;left:0;right:auto;bottom:auto;width:100%;height:100%;z-index:0;background-image:
-      linear-gradient(to right,#f6f8fc 0%,rgba(246,248,252,.28) 15%,rgba(246,248,252,.28) 85%,#f6f8fc 100%),
-      linear-gradient(rgba(246,248,252,.42),rgba(246,248,252,.62)),
+      linear-gradient(rgba(13,20,44,.62),rgba(13,20,44,.80)),
       url('hero-legal.jpg');
-    background-size:cover,cover,cover;background-position:center;background-repeat:no-repeat}
+    background-size:cover,cover;background-position:center;background-repeat:no-repeat}
   .hero .inner{position:relative;z-index:1;padding-top:0}
+  .hero .inner h1{color:#ffffff}
+  .hero .inner h1 em{color:#5fd07a}
+  .hero .inner p{color:rgba(233,238,248,.92)}
   @media(max-width:640px){.hero{padding:3rem 0 2.5rem}}
   @media(max-width:640px){.hs-n{font-size:1.45rem}.searchgo{padding:.65rem 1rem}.searchwrap input{padding-right:6rem}}
   /* gateway CTA panel */
