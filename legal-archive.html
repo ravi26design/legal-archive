@@ -2068,7 +2068,6 @@
         <div style="display:flex;align-items:center;gap:.75rem"><span>Document Preview</span><span class="dvediting" id="dvEditingBadge" style="display:none">● Editing</span><span class="viewonly" id="dvViewOnly" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:.8rem;height:.8rem"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> View only</span></div>
         <div class="dvicons" id="dvIcons">
           <button id="dvShareBtn" title="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>
-          <button id="dvEditBtn" title="Edit document"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4z"/></svg></button>
           <button id="dvExpandBtn" title="Fullscreen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
         </div>
         <div class="dv-editactions" id="dvEditActions" style="display:none">
@@ -2502,7 +2501,7 @@ const topThemes=[{name:'Forest Rights',count:45},{name:'Community Rights',count:
 /* ---- file types, ownership & editable content stores ---- */
 const FILE_TYPES={'2':'doc','3':'doc','5':'text','7':'doc','8':'text','10':'doc','11':'doc','12':'xlsx','13':'csv','20':'doc','21':'pdf','22':'doc','23':'doc','24':'pdf','25':'doc','26':'doc','27':'pdf','28':'doc','29':'pdf','30':'doc','31':'doc'};
 const FEXT={doc:'.docx',text:'.txt',csv:'.csv',xlsx:'.xlsx',pdf:'.pdf'};
-R.forEach(r=>{ r.fileType=FILE_TYPES[r.id]||'doc'; r.owner=(['2','12','13'].includes(r.id))?'priya@fes.org.in':'vikram@fes.org.in'; });
+R.forEach(r=>{ r.fileType='pdf'; r.owner=(['2','12','13'].includes(r.id))?'priya@fes.org.in':'vikram@fes.org.in'; });
 /* ---- schema metadata (LRep metadata schema: Theme / Jurisdiction / Language / Status / Document Type) ---- */
 const META={
  '2':{themes:['Forest Rights','Forest Governance','Adivasi / Tribal Rights','Land Rights'],jurisdictions:['Central (Union of India)'],languages:['English','Hindi'],status:'In force',docType:'Act'},
@@ -3068,7 +3067,7 @@ const WS_TABS=[
 ];
 let wsTab='dashboard';
 let archFt='all', trashFt='all';
-function ftTabBar(cur,act){ const opts=[['all','All'],['text','Text'],['pdf','PDF'],['doc','DOC'],['xlsx','XL'],['csv','CSV']]; return `<div class="ftbar">${opts.map(o=>`<button class="ftbtn${cur===o[0]?' on':''}" data-act="${act}" data-val="${o[0]}">${o[1]}</button>`).join('')}</div>`; }
+function ftTabBar(cur,act){ const opts=[['all','All'],['pdf','PDF']]; return `<div class="ftbar">${opts.map(o=>`<button class="ftbtn${cur===o[0]?' on':''}" data-act="${act}" data-val="${o[0]}">${o[1]}</button>`).join('')}</div>`; }
 function openWorkspace(tab){
   if(!session.loggedIn){go('login');return;}
   tab=tab||'dashboard';
@@ -3115,10 +3114,10 @@ function renderWsContent(){ $('#wsContent').innerHTML=(TPL[wsTab]||tplDashboard)
 /* ----- dashboard ----- */
 function dashRows(){
   const rows=[['2','Published','sp-pub','10 Dec 2025'],['8','In Review','sp-rev','10 Jan 2026'],['13','Draft','sp-draft','today'],['12','Published','sp-pub','28 Jan 2026'],['10','Published','sp-pub','22 Jun 2025']];
-  return rows.map(r=>{const d=R.find(x=>x.id===r[0]);const ft=d.fileType||'doc'; return `<tr><td><div class="dt-doc"><span class="dt-ic dt-ic-${ft}"><i data-lucide="${fileIcon(ft)}"></i></span><div class="dt-doctx"><b>${d.title}</b><span>${d.contentType}</span></div></div></td><td>${d.fileType.toUpperCase()}</td><td>${r[3]}</td><td><span class="spill ${r[2]}">${r[1]}</span></td><td class="tnum"><button class="linkbtn" data-act="edit" data-val="${d.id}">Edit</button> &nbsp;<button class="linkbtn" data-act="share" data-val="${d.id}">Share</button></td></tr>`;}).join('');
+  return rows.map(r=>{const d=R.find(x=>x.id===r[0]);const ft=d.fileType||'doc'; return `<tr><td><div class="dt-doc"><span class="dt-ic dt-ic-${ft}"><i data-lucide="${fileIcon(ft)}"></i></span><div class="dt-doctx"><b>${d.title}</b><span>${d.contentType}</span></div></div></td><td>${d.fileType.toUpperCase()}</td><td>${r[3]}</td><td><span class="spill ${r[2]}">${r[1]}</span></td><td class="tnum"><button class="linkbtn" data-act="share" data-val="${d.id}">Share</button></td></tr>`;}).join('');
 }
 function docTableRows(list){
-  return list.map(d=>{const ft=d.fileType||'doc'; return `<tr><td><div class="dt-doc"><span class="dt-ic dt-ic-${ft}"><i data-lucide="${fileIcon(ft)}"></i></span><div class="dt-doctx"><b>${d.title}</b><span>${d.contentType} · ${d.fileType.toUpperCase()}</span></div></div></td><td>${d.geographicalFocus}</td><td>${fmtDate(d.lastUpdated)}</td><td><span class="spill sp-pub">Published</span></td><td class="tnum"><button class="linkbtn" data-act="viewdoc" data-val="${d.id}">View</button> &nbsp;<button class="linkbtn" data-act="edit" data-val="${d.id}">Edit</button> &nbsp;<button class="linkbtn" data-act="share" data-val="${d.id}">Share</button></td></tr>`;}).join('');
+  return list.map(d=>{const ft=d.fileType||'doc'; return `<tr><td><div class="dt-doc"><span class="dt-ic dt-ic-${ft}"><i data-lucide="${fileIcon(ft)}"></i></span><div class="dt-doctx"><b>${d.title}</b><span>${d.contentType} · ${d.fileType.toUpperCase()}</span></div></div></td><td>${d.geographicalFocus}</td><td>${fmtDate(d.lastUpdated)}</td><td><span class="spill sp-pub">Published</span></td><td class="tnum"><button class="linkbtn" data-act="viewdoc" data-val="${d.id}">View</button> &nbsp;<button class="linkbtn" data-act="share" data-val="${d.id}">Share</button></td></tr>`;}).join('');
 }
 const UPLOAD_BTN=`<button class="btn btn-dark" data-act="upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Upload Document</button>`;
 const KPI_COLORS={
@@ -3261,12 +3260,12 @@ function ctCounts(){const c={Law:0,Policy:0,Judgement:0}; R.forEach(r=>c[r.conte
 function donutStyle(parts){const total=parts.reduce((s,p)=>s+p[1],0)||1;let acc=0;const segs=parts.map(p=>{const a=acc/total*360,b=(acc+p[1])/total*360;acc+=p[1];return `${p[0]} ${a}deg ${b}deg`;});return `background:conic-gradient(${segs.join(',')})`;}
 let repTab='overview';
 const REP_THEMES=[['NRM',842],['Forest',612],['Livelihood',496],['Water',384],['Land Rights',312],['Agriculture',264],['Governance',201],['Climate',178],['Health',143],['Gender',112],['Education',98],['Disaster',64]];
-const REP_FILETYPES=[['PDF',1240,44],['Word (.docx)',680,24],['Excel (.xlsx)',420,15],['Images',312,11],['Video',72,3],['Other',123,4]];
+const REP_FILETYPES=[['PDF',2847,100]];
 const REP_TREND=[['Week 1',96],['Week 2',124],['Week 3',88],['Week 4',144]];
-const REP_STORAGE=[['Videos (mp4/mov)','18.4 GB',73],['PDF','3.8 GB',15],['Word (.docx)','1.2 GB',5],['Images','890 MB',3],['Excel (.xlsx)','640 MB',2],['Other','280 MB',1]];
+const REP_STORAGE=[['PDF','12.8 GB',100]];
 const REP_USERS=[['Rajesh Nair','Org. Administrator',42,30,6,4,2],['Kavita Menon','Org. Moderator',89,68,12,6,3],['Priya Sharma','Registered User',124,94,18,8,4],['Sarah Johnson','Registered User',76,58,10,5,3],['Michael Chen','Registered User',58,44,8,4,2],['Emma Davis','Org. Moderator',112,86,14,8,4],['Robert Wilson','Registered User',34,24,6,3,1],['Lisa Park','Registered User',28,20,4,2,2]];
-const REP_MEDIA_STATS=[['1,240','PDF'],['680','Word (.docx)'],['420','Excel (.xlsx)'],['312','Images'],['72','Videos'],['123','Other']];
-const REP_MEDIA=[['PDF Document','Priya Sharma',540,'1.6 GB'],['Word Document (.docx)','Priya Sharma',210,'380 MB'],['Images (jpg/png/gif)','Priya Sharma',96,'260 MB'],['Word Document (.docx)','Emma Davis',320,'560 MB'],['PDF Document','Emma Davis',280,'820 MB'],['Excel Spreadsheet (.xlsx)','Kavita Menon',240,'360 MB'],['PDF Document','Kavita Menon',180,'540 MB'],['Images (jpg/png/gif)','Sarah Johnson',150,'420 MB'],['PDF Document','Sarah Johnson',120,'360 MB'],['Videos (mp4/mov)','Michael Chen',42,'10.2 GB'],['PDF Document','Michael Chen',60,'180 MB'],['Other (ppt/zip/csv)','Rajesh Nair',70,'160 MB'],['PDF Document','Rajesh Nair',60,'190 MB']];
+const REP_MEDIA_STATS=[['2,847','PDF']];
+const REP_MEDIA=[['PDF Document','Priya Sharma',540,'1.6 GB'],['PDF Document','Priya Sharma',210,'380 MB'],['PDF Document','Emma Davis',320,'560 MB'],['PDF Document','Emma Davis',280,'820 MB'],['PDF Document','Kavita Menon',240,'360 MB'],['PDF Document','Kavita Menon',180,'540 MB'],['PDF Document','Sarah Johnson',150,'420 MB'],['PDF Document','Sarah Johnson',120,'360 MB'],['PDF Document','Michael Chen',60,'180 MB'],['PDF Document','Rajesh Nair',70,'160 MB'],['PDF Document','Rajesh Nair',60,'190 MB']];
 const THEME_BAR_COLORS=['#2E8540','#1F7A4D','#E8A33D','#2E7BC4','#7B5EA7','#8FBF3F','#2B3674','#17A2B8','#E4572E','#D6467F','#F0803C','#6B7280'];
 const FT_COLORS={'PDF':'#E4572E','Word':'#2E7BC4','Excel':'#2E8540','Images':'#7B5EA7','Video':'#F0803C','Other':'#6B7280'};
 function ftColor(label){ for(const k in FT_COLORS){ if(label.indexOf(k)===0) return FT_COLORS[k]; } return '#6B7280'; }
@@ -3282,7 +3281,7 @@ function repOverview(){
   <div class="wscard rep-card"><div class="rep-cardhead"><h2>Storage by File Type</h2><button class="rep-dl"><i data-lucide="download"></i></button></div>${REP_STORAGE.map(s=>hbar(s[0],s[1],s[2])).join('')}</div>`;
 }
 const REP_ORGS=[['FES Madhya Pradesh',738,590,102,'7.4 GB'],['FES Rajasthan',624,480,96,'6.8 GB'],['FES Odisha',512,402,70,'5.2 GB'],['FES Andhra Pradesh',386,300,54,'2.6 GB'],['FES Gujarat',323,250,49,'1.8 GB'],['FES Karnataka',264,210,38,'1.4 GB']];
-const REP_MEDIA_ORG=[['PDF Document','FES Rajasthan',540,'1.6 GB'],['Word Document (.docx)','FES Rajasthan',210,'380 MB'],['Images (jpg/png/gif)','FES Rajasthan',96,'260 MB'],['Word Document (.docx)','FES Odisha',320,'560 MB'],['PDF Document','FES Odisha',280,'820 MB'],['Excel Spreadsheet (.xlsx)','FES Madhya Pradesh',240,'360 MB'],['PDF Document','FES Madhya Pradesh',180,'540 MB'],['Images (jpg/png/gif)','FES Andhra Pradesh',150,'420 MB'],['PDF Document','FES Andhra Pradesh',120,'360 MB'],['Videos (mp4/mov)','FES Karnataka',42,'10.2 GB'],['PDF Document','FES Karnataka',60,'180 MB'],['Other (ppt/zip/csv)','FES Gujarat',70,'160 MB'],['PDF Document','FES Gujarat',60,'190 MB']];
+const REP_MEDIA_ORG=[['PDF Document','FES Rajasthan',540,'1.6 GB'],['PDF Document','FES Rajasthan',210,'380 MB'],['PDF Document','FES Odisha',320,'560 MB'],['PDF Document','FES Odisha',280,'820 MB'],['PDF Document','FES Madhya Pradesh',240,'360 MB'],['PDF Document','FES Madhya Pradesh',180,'540 MB'],['PDF Document','FES Andhra Pradesh',150,'420 MB'],['PDF Document','FES Andhra Pradesh',120,'360 MB'],['PDF Document','FES Karnataka',60,'180 MB'],['PDF Document','FES Gujarat',70,'160 MB'],['PDF Document','FES Gujarat',60,'190 MB']];
 const ORG_ABBR={'FES Madhya Pradesh':'MP','FES Rajasthan':'RJ','FES Odisha':'OD','FES Andhra Pradesh':'AP','FES Gujarat':'GJ','FES Karnataka':'KA'};
 function orgAbbr(n){ return ORG_ABBR[n]||initials(n); }
 function repOrgs(){
@@ -3540,7 +3539,7 @@ function tplDocuments(){
   const vis=['Public','Public','Team only','Public','Public','Public','Public','Public','Public'];
   return `<div class="ws-head"><div><h1>Document Management</h1><p>Every document in the repository — manage metadata, versions and visibility.</p></div><div class="ws-actions"><button class="btn btn-outline" data-act="createdoc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>New document</button></div></div>
   <div class="wstabs"><button class="on" data-act="wstab">All types</button><button data-act="wstab">Legal</button><button data-act="wstab">Policy</button><button data-act="wstab">Judgement</button></div>
-  <div class="wscard" style="padding:.4rem 1.25rem"><table class="dtable"><thead><tr><th>Document</th><th>Category</th><th>Uploaded by</th><th>Visibility</th><th>Status</th><th></th></tr></thead><tbody>${R.map((r,i)=>{const ft=r.fileType||'doc'; return `<tr><td><div class="dt-doc"><span class="dt-ic dt-ic-${ft}"><i data-lucide="${fileIcon(ft)}"></i></span><div class="dt-doctx"><b>${r.title}</b><span>${r.fileType.toUpperCase()} · v1.0</span></div></div></td><td>${DOC_CAT[r.contentType]||'Document'}</td><td>${UPLOADERS[i%UPLOADERS.length]}</td><td>${vis[i%vis.length]}</td><td>${docLocks[r.id]?`<span class="lockchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>${docLocks[r.id].by.split(' ')[0]}</span>`:'<span class="spill sp-pub">Active</span>'}</td><td class="tnum"><button class="linkbtn" data-act="viewdoc" data-val="${r.id}">View</button> &nbsp;<button class="linkbtn" data-act="edit" data-val="${r.id}">Edit</button> &nbsp;<button class="linkbtn" data-act="share" data-val="${r.id}">Share</button> &nbsp;<button class="linkbtn" data-act="archive" style="color:var(--gray-500)">Archive</button></td></tr>`;}).join('')}</tbody></table></div>`;
+  <div class="wscard" style="padding:.4rem 1.25rem"><table class="dtable"><thead><tr><th>Document</th><th>Category</th><th>Uploaded by</th><th>Visibility</th><th>Status</th><th></th></tr></thead><tbody>${R.map((r,i)=>{const ft=r.fileType||'doc'; return `<tr><td><div class="dt-doc"><span class="dt-ic dt-ic-${ft}"><i data-lucide="${fileIcon(ft)}"></i></span><div class="dt-doctx"><b>${r.title}</b><span>${r.fileType.toUpperCase()} · v1.0</span></div></div></td><td>${DOC_CAT[r.contentType]||'Document'}</td><td>${UPLOADERS[i%UPLOADERS.length]}</td><td>${vis[i%vis.length]}</td><td>${docLocks[r.id]?`<span class="lockchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>${docLocks[r.id].by.split(' ')[0]}</span>`:'<span class="spill sp-pub">Active</span>'}</td><td class="tnum"><button class="linkbtn" data-act="viewdoc" data-val="${r.id}">View</button> &nbsp;<button class="linkbtn" data-act="share" data-val="${r.id}">Share</button> &nbsp;<button class="linkbtn" data-act="archive" style="color:var(--gray-500)">Archive</button></td></tr>`;}).join('')}</tbody></table></div>`;
 }
 /* ----- approvals ----- */
 let aprFilter='all';
@@ -3548,13 +3547,13 @@ const APPROVALS=[
  {id:'AP-01',name:'Service Agreement — Q2 2026.pdf',owner:'Sarah Johnson',date:'2026-05-15',size:'1.4 MB',status:'Pending',ft:'pdf'},
  {id:'AP-02',name:'Employee Handbook v3.2.pdf',owner:'Michael Chen',date:'2026-05-14',size:'3.2 MB',status:'Pending',ft:'pdf'},
  {id:'AP-03',name:'Annual Compliance Report.pdf',owner:'Emma Davis',date:'2026-05-13',size:'2.1 MB',status:'Approved',ft:'pdf'},
- {id:'AP-04',name:'Budget Analysis FY2026.xlsx',owner:'Robert Wilson',date:'2026-05-12',size:'890 KB',status:'Approved',ft:'xlsx'},
+ {id:'AP-04',name:'Budget Analysis FY2026.pdf',owner:'Robert Wilson',date:'2026-05-12',size:'890 KB',status:'Approved',ft:'pdf'},
  {id:'AP-05',name:'IT Security Policy v4.0.pdf',owner:'Lisa Park',date:'2026-05-11',size:'1.8 MB',status:'Pending',ft:'pdf'},
- {id:'AP-06',name:'Q1 Field Report — Bharuch.docx',owner:'Manish Patel',date:'2026-05-10',size:'760 KB',status:'Request to Change',ft:'doc'},
+ {id:'AP-06',name:'Q1 Field Report — Bharuch.pdf',owner:'Manish Patel',date:'2026-05-10',size:'760 KB',status:'Request to Change',ft:'pdf'},
  {id:'AP-07',name:'Vendor Renewal — Tech Solutions.pdf',owner:'Krishnan Iyer',date:'2026-05-09',size:'1.1 MB',status:'Request to Change',ft:'pdf'},
  {id:'AP-08',name:'Old Policy Draft v1.pdf',owner:'Sarah Mehta',date:'2026-05-08',size:'540 KB',status:'Rejected',ft:'pdf'},
  {id:'AP-09',name:'Grazing Rights Circular 2026.pdf',owner:'Priya Sharma',date:'2026-05-07',size:'1.2 MB',status:'Pending',ft:'pdf'},
- {id:'AP-10',name:'Wetland Restoration MoU.docx',owner:'Kavita Menon',date:'2026-05-06',size:'980 KB',status:'Rejected',ft:'doc'}
+ {id:'AP-10',name:'Wetland Restoration MoU.pdf',owner:'Kavita Menon',date:'2026-05-06',size:'980 KB',status:'Rejected',ft:'pdf'}
 ];
 // Synthetic detail records so an approval file opens a full Document detail page.
 const APR_DOCS={};
@@ -3711,13 +3710,13 @@ function tplAudit(){
 }
 /* ----- trash ----- */
 const TRASH=[
- ['Old Draft — Grazing Rules, 2019','TXT','Kavita Menon','3 days ago'],
+ ['Old Draft — Grazing Rules, 2019','PDF','Kavita Menon','3 days ago'],
  ['Superseded Wildlife Circular','PDF','Priya Sharma','1 week ago'],
  ['Duplicate — Forest Rights Act upload','PDF','System','1 week ago'],
- ['Draft — Legal Notice (unused)','DOCX','Rajesh Nair','2 weeks ago'],
- ['Beneficiary Data — old version','XLSX','Kavita Menon','2 weeks ago'],
- ['Survey Export (obsolete)','CSV','Priya Sharma','3 weeks ago'],
- ['Meeting Notes — superseded','TXT','Emma Davis','3 weeks ago']
+ ['Draft — Legal Notice (unused)','PDF','Rajesh Nair','2 weeks ago'],
+ ['Beneficiary Data — old version','PDF','Kavita Menon','2 weeks ago'],
+ ['Survey Export (obsolete)','PDF','Priya Sharma','3 weeks ago'],
+ ['Meeting Notes — superseded','PDF','Emma Davis','3 weeks ago']
 ];
 function tplTrash(){
   const ftKey={TXT:'text',PDF:'pdf',DOCX:'doc',XLSX:'xlsx',CSV:'csv'};
@@ -3885,7 +3884,7 @@ $('#dDownload').addEventListener('click',()=>toast('Preparing download…'));
 $('#dViewDoc').addEventListener('click',()=>{ if(currentDetail) openDocViewer(currentDetail); });
 $('#dvBack').addEventListener('click',()=>{ if(dvEditing){exitEdit(currentDetail);} go('detail'); });
 $('#dvCrumbOrigin').addEventListener('click',e=>{ const ws=e.currentTarget.dataset.ws; if(ws){ e.preventDefault(); e.stopImmediatePropagation(); if(dvEditing){exitEdit(currentDetail);} openWorkspace(ws); } });
-$('#dvEditBtn').addEventListener('click',()=>{ if(currentDetail) enterEdit(currentDetail); });
+{const _eb=$('#dvEditBtn'); if(_eb) _eb.addEventListener('click',()=>{ if(currentDetail) enterEdit(currentDetail); });}
 $('#dvExpandBtn').addEventListener('click',()=>toast('Opening full-screen preview…'));
 $('#dvCancel').addEventListener('click',()=>{ if(currentDetail) exitEdit(currentDetail); });
 $('#dvSave').addEventListener('click',()=>{ if(currentDetail) saveEdit(currentDetail); });
@@ -4082,7 +4081,7 @@ function openUpload(){
   $('#uploadModal').innerHTML=`
     <div class="up-head"><span class="up-head-ic">${_UI(upIcon,'1.2rem')}</span><div class="up-head-tx"><h3>Upload New Document</h3><p>Add a new document to the repository with its metadata.</p></div><button class="modal-x" data-up="close" aria-label="Close">${_UI('<path d="M18 6L6 18M6 6l12 12"/>','1.15rem')}</button></div>
     <div class="up-body">
-      <div class="up-drop" data-up="browse"><span class="up-drop-ic">${_UI(upIcon)}</span><div class="up-drop-t">Drag and drop a file here, or click to browse</div><div class="up-drop-d">Supported: PDF, DOCX, XLSX, TXT, CSV</div></div>
+      <div class="up-drop" data-up="browse"><span class="up-drop-ic">${_UI(upIcon)}</span><div class="up-drop-t">Drag and drop a file here, or click to browse</div><div class="up-drop-d">Supported: PDF only</div></div>
       <div class="up-field"><label>Content Type${_ureq}</label><div class="up-seg" id="up-ctypeseg">${S.contentTypes.map((c,i)=>`<button class="up-segbtn${i===0?' active':''}" data-upct="${c[0]}">${c[1]}</button>`).join('')}</div></div>
       ${upTxt('up-title','Title','Full title of the document',true)}
       ${upArea('up-desc','Description','A 2–5 sentence summary of the document',true)}
