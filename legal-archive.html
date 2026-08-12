@@ -1863,6 +1863,31 @@
     .ct-notes,.ct-ways{grid-template-columns:1fr}
     .my-grid,.cardgrid{grid-template-columns:1fr!important}
   }
+  /* ---- app launcher (nav grid menu) ---- */
+  .navright{display:flex;align-items:center;gap:.85rem}
+  .applauncher{position:relative;display:flex;align-items:center}
+  .appgrid-btn{display:inline-flex;align-items:center;justify-content:center;width:2.6rem;height:2.6rem;border:1px solid var(--line-2);border-radius:.7rem;background:#fff;color:var(--blue);cursor:pointer;padding:0;transition:background .15s,border-color .15s}
+  .appgrid-btn:hover{background:var(--bg-soft)}
+  .appgrid-btn.open{background:var(--bg-soft);border-color:var(--blue)}
+  .appgrid-btn svg{width:1.35rem;height:1.35rem;display:block}
+  .applauncher-menu{position:absolute;right:0;top:calc(100% + .6rem);width:23rem;max-width:calc(100vw - 2rem);background:#fff;border:1px solid var(--gray-200);border-radius:1rem;box-shadow:0 20px 44px -12px rgba(43,54,116,.28);padding:1.15rem 1.25rem 1.35rem;display:none;z-index:70}
+  .applauncher-menu.open{display:block}
+  .appl-head{display:grid;grid-template-columns:2fr 1fr;margin-bottom:.5rem}
+  .appl-head span{font-size:.82rem;font-weight:700;color:var(--gray-500);letter-spacing:.01em}
+  .appl-head span:last-child{text-align:left}
+  .appl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.35rem .5rem}
+  .appl-tile{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:none;border:0;padding:.7rem .35rem;border-radius:.7rem;cursor:pointer;transition:background .15s}
+  .appl-tile:hover{background:var(--bg-soft)}
+  .appl-ic{width:3rem;height:3rem;border-radius:.85rem;display:flex;align-items:center;justify-content:center}
+  .appl-ic svg{width:1.4rem;height:1.4rem}
+  .appl-lbl{font-size:.85rem;font-weight:600;color:var(--ink);text-align:center;line-height:1.15}
+  .ic-blue{background:#e7eefc;color:#3b6fd4}
+  .ic-green{background:#e6f4ec;color:#2f9e5f}
+  .ic-amber{background:#fbeeda;color:#d0912f}
+  .ic-purple{background:#efe8fb;color:#7c4fe0}
+  .ic-teal{background:#e0f0ee;color:#2f9c8f}
+  .ic-pink{background:#fce6ef;color:#d94f8a}
+  @media(max-width:820px){.applauncher{display:none}}
 </style>
 
 <!-- ===== NAV ===== -->
@@ -1875,7 +1900,29 @@
       <a data-nav="repository">Repository</a>
       <a data-nav="contact">Contact + Contribute</a>
     </div>
-    <div class="autharea" id="authArea"></div>
+    <div class="navright">
+      <div class="applauncher">
+        <button class="appgrid-btn" id="appGridBtn" aria-label="Apps" aria-expanded="false" title="Apps">
+          <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="6" r="1.7"/><circle cx="12" cy="6" r="1.7"/><circle cx="18" cy="6" r="1.7"/><circle cx="6" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="18" cy="12" r="1.7"/><circle cx="6" cy="18" r="1.7"/><circle cx="12" cy="18" r="1.7"/><circle cx="18" cy="18" r="1.7"/></svg>
+        </button>
+        <div class="applauncher-menu" id="appMenu" role="menu" aria-label="Products">
+          <div class="appl-head"><span>Products</span><span>Quick access</span></div>
+          <div class="appl-grid">
+            <button class="appl-tile" data-app="Commons"><span class="appl-ic ic-blue"><i data-lucide="users"></i></span><span class="appl-lbl">Commons</span></button>
+            <button class="appl-tile" data-app="VI Mapping"><span class="appl-ic ic-green"><i data-lucide="map"></i></span><span class="appl-lbl">VI Mapping</span></button>
+            <button class="appl-tile" data-app="Form Builder"><span class="appl-ic ic-amber"><i data-lucide="clipboard-list"></i></span><span class="appl-lbl">Form Builder</span></button>
+            <button class="appl-tile" data-app="GEET"><span class="appl-ic ic-purple"><i data-lucide="zap"></i></span><span class="appl-lbl">GEET</span></button>
+            <button class="appl-tile" data-app="CLART"><span class="appl-ic ic-teal"><i data-lucide="graduation-cap"></i></span><span class="appl-lbl">CLART</span></button>
+            <button class="appl-tile" data-app="CLM"><span class="appl-ic ic-pink"><i data-lucide="file-text"></i></span><span class="appl-lbl">CLM</span></button>
+            <button class="appl-tile" data-app="CWB"><span class="appl-ic ic-blue"><i data-lucide="trending-up"></i></span><span class="appl-lbl">CWB</span></button>
+            <button class="appl-tile" data-app="GWMT"><span class="appl-ic ic-purple"><i data-lucide="droplet"></i></span><span class="appl-lbl">GWMT</span></button>
+            <button class="appl-tile" data-app="Data Platform"><span class="appl-ic ic-blue"><i data-lucide="database"></i></span><span class="appl-lbl">Data Platform</span></button>
+            <button class="appl-tile" data-app="Academy"><span class="appl-ic ic-green"><i data-lucide="graduation-cap"></i></span><span class="appl-lbl">Academy</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="autharea" id="authArea"></div>
+    </div>
     <button class="navtoggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   </div>
 </nav>
@@ -4286,6 +4333,16 @@ $('#pubUpload') && $('#pubUpload').addEventListener('click',openUpload);
   t.addEventListener('click',e=>{ e.stopPropagation(); setOpen(!l.classList.contains('open')); });
   l.addEventListener('click',e=>{ if(e.target.closest('a')) setOpen(false); });
   document.addEventListener('click',e=>{ if(l.classList.contains('open')&&!e.target.closest('#navlinks')&&!e.target.closest('#navToggle')) setOpen(false); });
+})();
+
+/* ===== app launcher ===== */
+(function(){
+  const btn=$('#appGridBtn'), menu=$('#appMenu'); if(!btn||!menu) return;
+  const setOpen=o=>{ menu.classList.toggle('open',o); btn.classList.toggle('open',o); btn.setAttribute('aria-expanded',o?'true':'false'); };
+  btn.addEventListener('click',e=>{ e.stopPropagation(); setOpen(!menu.classList.contains('open')); });
+  menu.querySelectorAll('.appl-tile').forEach(t=>t.addEventListener('click',()=>{ setOpen(false); toast('Opening '+t.dataset.app+'…'); }));
+  document.addEventListener('click',e=>{ if(menu.classList.contains('open')&&!e.target.closest('#appMenu')&&!e.target.closest('#appGridBtn')) setOpen(false); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') setOpen(false); });
 })();
 
 /* ===== init ===== */
