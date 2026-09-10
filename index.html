@@ -1317,7 +1317,7 @@
   .hs-n em{font-style:normal;color:var(--green)}
   .hs-l{font-size:.8rem;font-weight:600;color:var(--muted-2);margin-top:.3rem;white-space:nowrap}
   @media(max-width:760px){.hero-stats{grid-template-columns:1fr 1fr;max-width:30rem}}
-  .hero{position:relative;overflow:hidden;background:#0f1730;padding:4.5rem 0 4rem}
+  .hero{position:relative;overflow:hidden;background:#0f1730;min-height:calc(100vh - 4rem);display:flex;flex-direction:column;justify-content:center;padding:3rem 0}
   .hero::before{content:"";position:absolute;top:0;left:0;right:auto;bottom:auto;width:100%;height:100%;z-index:0;background-image:
       linear-gradient(rgba(13,20,44,.42),rgba(13,20,44,.58)),
       url('hero-commons.jpg');
