@@ -1317,16 +1317,15 @@
   .hs-n em{font-style:normal;color:var(--green)}
   .hs-l{font-size:.8rem;font-weight:600;color:var(--muted-2);margin-top:.3rem;white-space:nowrap}
   @media(max-width:760px){.hero-stats{grid-template-columns:1fr 1fr;max-width:30rem}}
-  .hero{position:relative;overflow:hidden;background:#0f1730;min-height:calc(100vh - 4rem);display:flex;flex-direction:column;justify-content:center;padding:3rem 0}
-  .hero::before{content:"";position:absolute;top:0;left:0;right:auto;bottom:auto;width:100%;height:100%;z-index:0;background-image:
-      linear-gradient(rgba(13,20,44,.42),rgba(13,20,44,.58)),
-      url('hero-commons.jpg');
-    background-size:cover,cover;background-position:center;background-repeat:no-repeat}
+  .hero{position:relative;overflow:hidden;background:#f6f8fc;padding:4rem 0 3.25rem}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(620px 420px at 85% 18%,rgba(57,162,72,.08),transparent 70%);pointer-events:none}
   .hero .inner{position:relative;z-index:1;padding-top:0}
-  .hero .inner h1{color:#ffffff}
-  .hero .inner h1 em{color:#5fd07a}
-  .hero .inner p{color:rgba(233,238,248,.92)}
-  @media(max-width:640px){.hero{padding:3rem 0 2.5rem}}
+  .hero .inner h1{color:var(--ink)}
+  .hero .inner h1 em{color:var(--green)}
+  .hero .inner p{color:var(--muted-2)}
+  .hero-imgband{background-image:url('hero-commons.jpg');background-size:cover;background-position:center 42%;background-attachment:fixed;background-repeat:no-repeat;min-height:80vh}
+  @media(max-width:900px){.hero-imgband{background-attachment:scroll;min-height:52vh}}
+  @media(max-width:640px){.hero{padding:3rem 0 2.25rem}}
   @media(max-width:640px){.hs-n{font-size:1.45rem}.searchgo{padding:.65rem 1rem}.searchwrap input{padding-right:6rem}}
   /* gateway CTA panel */
   .infocard.gateway{background:linear-gradient(135deg,#22326f 0%,#2b3674 60%,#243a6e 100%);border:none;color:#fff;position:relative;overflow:hidden;padding:2.9rem 2rem;box-shadow:0 24px 60px -28px rgba(20,30,80,.5)}
@@ -1958,6 +1957,7 @@
       </div>
     </div>
   </div>
+  <div class="hero-imgband" role="img" aria-label="Illustration of a village commons — community meeting, pond, fields and legal recognition"></div>
 
   <section class="sectionpad"><div class="mx">
     <div class="infocard gateway">
